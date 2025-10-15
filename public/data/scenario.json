@@ -1,0 +1,19 @@
+{
+  "baseline": {
+    "occupancy": 85.3,
+    "adr": 12850,
+    "projectedRevenue": 3570000
+  },
+  "scenarios": {
+    "optimistic": {
+      "occupancy": 95.0,
+      "adr": 14500,
+      "projectedRevenue": 4485000
+    },
+    "pessimistic": {
+      "occupancy": 75.0,
+      "adr": 11000,
+      "projectedRevenue": 2685000
+    }
+  }
+}

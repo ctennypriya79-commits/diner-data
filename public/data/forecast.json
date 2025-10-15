@@ -1,0 +1,30 @@
+{
+  "30days": [
+    { "date": "15 Oct", "actual": 285000, "forecast": 285000, "upper": 285000, "lower": 285000 },
+    { "date": "16 Oct", "actual": null, "forecast": 295000, "upper": 315000, "lower": 275000 },
+    { "date": "17 Oct", "actual": null, "forecast": 310000, "upper": 335000, "lower": 285000 },
+    { "date": "18 Oct", "actual": null, "forecast": 325000, "upper": 355000, "lower": 295000 },
+    { "date": "19 Oct", "actual": null, "forecast": 340000, "upper": 375000, "lower": 305000 },
+    { "date": "20 Oct", "actual": null, "forecast": 355000, "upper": 395000, "lower": 315000 },
+    { "date": "21 Oct", "actual": null, "forecast": 370000, "upper": 415000, "lower": 325000 }
+  ],
+  "60days": [
+    { "date": "Week 1", "actual": 1950000, "forecast": 1950000, "upper": 1950000, "lower": 1950000 },
+    { "date": "Week 2", "actual": null, "forecast": 2100000, "upper": 2300000, "lower": 1900000 },
+    { "date": "Week 3", "actual": null, "forecast": 2250000, "upper": 2500000, "lower": 2000000 },
+    { "date": "Week 4", "actual": null, "forecast": 2400000, "upper": 2700000, "lower": 2100000 },
+    { "date": "Week 5", "actual": null, "forecast": 2550000, "upper": 2900000, "lower": 2200000 },
+    { "date": "Week 6", "actual": null, "forecast": 2700000, "upper": 3100000, "lower": 2300000 },
+    { "date": "Week 7", "actual": null, "forecast": 2850000, "upper": 3300000, "lower": 2400000 },
+    { "date": "Week 8", "actual": null, "forecast": 3000000, "upper": 3500000, "lower": 2500000 }
+  ],
+  "7days": [
+    { "date": "Mon", "actual": 385000, "forecast": 385000, "upper": 385000, "lower": 385000 },
+    { "date": "Tue", "actual": null, "forecast": 395000, "upper": 420000, "lower": 370000 },
+    { "date": "Wed", "actual": null, "forecast": 410000, "upper": 440000, "lower": 380000 },
+    { "date": "Thu", "actual": null, "forecast": 425000, "upper": 460000, "lower": 390000 },
+    { "date": "Fri", "actual": null, "forecast": 450000, "upper": 490000, "lower": 410000 },
+    { "date": "Sat", "actual": null, "forecast": 485000, "upper": 530000, "lower": 440000 },
+    { "date": "Sun", "actual": null, "forecast": 470000, "upper": 515000, "lower": 425000 }
+  ]
+}

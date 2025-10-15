@@ -1,0 +1,25 @@
+{
+  "metrics": [
+    {
+      "name": "RevPAR Comparison",
+      "yours": 14250,
+      "competitor": 12800,
+      "change": 11.3,
+      "unit": "₹"
+    },
+    {
+      "name": "ADR Comparison",
+      "yours": 12850,
+      "competitor": 11200,
+      "change": 14.7,
+      "unit": "₹"
+    },
+    {
+      "name": "Occupancy Rate",
+      "yours": 85.3,
+      "competitor": 78.5,
+      "change": 8.7,
+      "unit": "%"
+    }
+  ]
+}

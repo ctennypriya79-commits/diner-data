@@ -1,0 +1,40 @@
+{
+  "thisWeek": {
+    "total": 145,
+    "lastYear": 132,
+    "change": 9.8,
+    "revenue": 1850000
+  },
+  "nextWeek": {
+    "total": 89,
+    "lastYear": 95,
+    "change": -6.3,
+    "revenue": 1125000
+  },
+  "nextMonth": {
+    "total": 234,
+    "lastYear": 198,
+    "change": 18.2,
+    "revenue": 2970000
+  },
+  "insights": [
+    {
+      "id": 1,
+      "type": "positive",
+      "title": "Strong Weekend Demand",
+      "description": "ADR up 12.4% vs last weekend"
+    },
+    {
+      "id": 2,
+      "type": "warning",
+      "title": "Midweek Opportunity",
+      "description": "Potential to optimize occupancy Tue-Thu"
+    },
+    {
+      "id": 3,
+      "type": "positive",
+      "title": "Revenue is Surging",
+      "description": "On track to surpass the target by 15%"
+    }
+  ]
+}

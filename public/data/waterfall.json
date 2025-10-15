@@ -1,0 +1,11 @@
+{
+  "data": [
+    { "name": "Starting Revenue", "value": 2850000, "type": "start" },
+    { "name": "Room Revenue", "value": 450000, "type": "positive" },
+    { "name": "Spa Revenue", "value": 125000, "type": "positive" },
+    { "name": "Restaurant Revenue", "value": 275000, "type": "positive" },
+    { "name": "Cancellations", "value": -85000, "type": "negative" },
+    { "name": "Discounts", "value": -45000, "type": "negative" },
+    { "name": "Current Revenue", "value": 3570000, "type": "end" }
+  ]
+}

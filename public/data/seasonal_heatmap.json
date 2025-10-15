@@ -1,0 +1,110 @@
+{
+  "January": [
+    { "day": 1, "occupancy": 65, "revenue": 245000, "weather": "Cloudy", "bookings": 42 },
+    { "day": 2, "occupancy": 72, "revenue": 278000, "weather": "Sunny", "bookings": 48 },
+    { "day": 3, "occupancy": 68, "revenue": 256000, "weather": "Partly Cloudy", "bookings": 45 },
+    { "day": 4, "occupancy": 85, "revenue": 325000, "weather": "Sunny", "bookings": 58 },
+    { "day": 5, "occupancy": 92, "revenue": 358000, "weather": "Sunny", "bookings": 65 },
+    { "day": 6, "occupancy": 88, "revenue": 342000, "weather": "Sunny", "bookings": 62 },
+    { "day": 7, "occupancy": 75, "revenue": 285000, "weather": "Cloudy", "bookings": 52 }
+  ],
+  "February": [
+    { "day": 1, "occupancy": 78, "revenue": 295000, "weather": "Sunny", "bookings": 54 },
+    { "day": 2, "occupancy": 82, "revenue": 312000, "weather": "Sunny", "bookings": 58 },
+    { "day": 3, "occupancy": 88, "revenue": 335000, "weather": "Partly Cloudy", "bookings": 62 },
+    { "day": 4, "occupancy": 91, "revenue": 348000, "weather": "Sunny", "bookings": 64 },
+    { "day": 5, "occupancy": 85, "revenue": 325000, "weather": "Cloudy", "bookings": 58 },
+    { "day": 6, "occupancy": 79, "revenue": 298000, "weather": "Rainy", "bookings": 55 },
+    { "day": 7, "occupancy": 74, "revenue": 282000, "weather": "Rainy", "bookings": 51 }
+  ],
+  "March": [
+    { "day": 1, "occupancy": 92, "revenue": 358000, "weather": "Sunny", "bookings": 65 },
+    { "day": 2, "occupancy": 95, "revenue": 372000, "weather": "Sunny", "bookings": 68 },
+    { "day": 3, "occupancy": 89, "revenue": 342000, "weather": "Sunny", "bookings": 62 },
+    { "day": 4, "occupancy": 86, "revenue": 328000, "weather": "Partly Cloudy", "bookings": 60 },
+    { "day": 5, "occupancy": 91, "revenue": 348000, "weather": "Sunny", "bookings": 64 },
+    { "day": 6, "occupancy": 93, "revenue": 365000, "weather": "Sunny", "bookings": 66 },
+    { "day": 7, "occupancy": 88, "revenue": 338000, "weather": "Sunny", "bookings": 61 }
+  ],
+  "April": [
+    { "day": 1, "occupancy": 85, "revenue": 325000, "weather": "Partly Cloudy", "bookings": 58 },
+    { "day": 2, "occupancy": 88, "revenue": 338000, "weather": "Sunny", "bookings": 61 },
+    { "day": 3, "occupancy": 82, "revenue": 312000, "weather": "Cloudy", "bookings": 57 },
+    { "day": 4, "occupancy": 78, "revenue": 295000, "weather": "Rainy", "bookings": 54 },
+    { "day": 5, "occupancy": 91, "revenue": 348000, "weather": "Sunny", "bookings": 64 },
+    { "day": 6, "occupancy": 94, "revenue": 368000, "weather": "Sunny", "bookings": 67 },
+    { "day": 7, "occupancy": 90, "revenue": 345000, "weather": "Sunny", "bookings": 63 }
+  ],
+  "May": [
+    { "day": 1, "occupancy": 72, "revenue": 275000, "weather": "Partly Cloudy", "bookings": 50 },
+    { "day": 2, "occupancy": 68, "revenue": 258000, "weather": "Cloudy", "bookings": 47 },
+    { "day": 3, "occupancy": 75, "revenue": 285000, "weather": "Sunny", "bookings": 52 },
+    { "day": 4, "occupancy": 81, "revenue": 308000, "weather": "Sunny", "bookings": 56 },
+    { "day": 5, "occupancy": 78, "revenue": 295000, "weather": "Partly Cloudy", "bookings": 54 },
+    { "day": 6, "occupancy": 84, "revenue": 322000, "weather": "Sunny", "bookings": 58 },
+    { "day": 7, "occupancy": 88, "revenue": 338000, "weather": "Sunny", "bookings": 61 }
+  ],
+  "June": [
+    { "day": 1, "occupancy": 65, "revenue": 245000, "weather": "Rainy", "bookings": 42 },
+    { "day": 2, "occupancy": 62, "revenue": 235000, "weather": "Rainy", "bookings": 40 },
+    { "day": 3, "occupancy": 58, "revenue": 220000, "weather": "Rainy", "bookings": 38 },
+    { "day": 4, "occupancy": 71, "revenue": 268000, "weather": "Cloudy", "bookings": 49 },
+    { "day": 5, "occupancy": 76, "revenue": 288000, "weather": "Partly Cloudy", "bookings": 53 },
+    { "day": 6, "occupancy": 69, "revenue": 262000, "weather": "Rainy", "bookings": 48 },
+    { "day": 7, "occupancy": 73, "revenue": 278000, "weather": "Cloudy", "bookings": 51 }
+  ],
+  "July": [
+    { "day": 1, "occupancy": 68, "revenue": 258000, "weather": "Rainy", "bookings": 47 },
+    { "day": 2, "occupancy": 72, "revenue": 275000, "weather": "Cloudy", "bookings": 50 },
+    { "day": 3, "occupancy": 75, "revenue": 285000, "weather": "Partly Cloudy", "bookings": 52 },
+    { "day": 4, "occupancy": 79, "revenue": 298000, "weather": "Cloudy", "bookings": 55 },
+    { "day": 5, "occupancy": 82, "revenue": 312000, "weather": "Partly Cloudy", "bookings": 57 },
+    { "day": 6, "occupancy": 77, "revenue": 292000, "weather": "Rainy", "bookings": 53 },
+    { "day": 7, "occupancy": 74, "revenue": 282000, "weather": "Rainy", "bookings": 51 }
+  ],
+  "August": [
+    { "day": 1, "occupancy": 71, "revenue": 268000, "weather": "Rainy", "bookings": 49 },
+    { "day": 2, "occupancy": 76, "revenue": 288000, "weather": "Cloudy", "bookings": 53 },
+    { "day": 3, "occupancy": 80, "revenue": 305000, "weather": "Partly Cloudy", "bookings": 56 },
+    { "day": 4, "occupancy": 83, "revenue": 318000, "weather": "Sunny", "bookings": 58 },
+    { "day": 5, "occupancy": 87, "revenue": 332000, "weather": "Sunny", "bookings": 61 },
+    { "day": 6, "occupancy": 84, "revenue": 322000, "weather": "Partly Cloudy", "bookings": 58 },
+    { "day": 7, "occupancy": 78, "revenue": 295000, "weather": "Cloudy", "bookings": 54 }
+  ],
+  "September": [
+    { "day": 1, "occupancy": 82, "revenue": 312000, "weather": "Sunny", "bookings": 57 },
+    { "day": 2, "occupancy": 86, "revenue": 328000, "weather": "Sunny", "bookings": 60 },
+    { "day": 3, "occupancy": 89, "revenue": 342000, "weather": "Partly Cloudy", "bookings": 62 },
+    { "day": 4, "occupancy": 92, "revenue": 358000, "weather": "Sunny", "bookings": 65 },
+    { "day": 5, "occupancy": 88, "revenue": 338000, "weather": "Sunny", "bookings": 61 },
+    { "day": 6, "occupancy": 85, "revenue": 325000, "weather": "Partly Cloudy", "bookings": 58 },
+    { "day": 7, "occupancy": 81, "revenue": 308000, "weather": "Cloudy", "bookings": 56 }
+  ],
+  "October": [
+    { "day": 1, "occupancy": 88, "revenue": 338000, "weather": "Sunny", "bookings": 61 },
+    { "day": 2, "occupancy": 91, "revenue": 348000, "weather": "Sunny", "bookings": 64 },
+    { "day": 3, "occupancy": 94, "revenue": 368000, "weather": "Sunny", "bookings": 67 },
+    { "day": 4, "occupancy": 96, "revenue": 378000, "weather": "Sunny", "bookings": 69 },
+    { "day": 5, "occupancy": 93, "revenue": 365000, "weather": "Sunny", "bookings": 66 },
+    { "day": 6, "occupancy": 90, "revenue": 345000, "weather": "Partly Cloudy", "bookings": 63 },
+    { "day": 7, "occupancy": 87, "revenue": 332000, "weather": "Sunny", "bookings": 61 }
+  ],
+  "November": [
+    { "day": 1, "occupancy": 85, "revenue": 325000, "weather": "Sunny", "bookings": 58 },
+    { "day": 2, "occupancy": 88, "revenue": 338000, "weather": "Sunny", "bookings": 61 },
+    { "day": 3, "occupancy": 91, "revenue": 348000, "weather": "Sunny", "bookings": 64 },
+    { "day": 4, "occupancy": 89, "revenue": 342000, "weather": "Partly Cloudy", "bookings": 62 },
+    { "day": 5, "occupancy": 86, "revenue": 328000, "weather": "Cloudy", "bookings": 60 },
+    { "day": 6, "occupancy": 92, "revenue": 358000, "weather": "Sunny", "bookings": 65 },
+    { "day": 7, "occupancy": 94, "revenue": 368000, "weather": "Sunny", "bookings": 67 }
+  ],
+  "December": [
+    { "day": 1, "occupancy": 96, "revenue": 378000, "weather": "Sunny", "bookings": 69 },
+    { "day": 2, "occupancy": 98, "revenue": 388000, "weather": "Sunny", "bookings": 71 },
+    { "day": 3, "occupancy": 95, "revenue": 372000, "weather": "Sunny", "bookings": 68 },
+    { "day": 4, "occupancy": 93, "revenue": 365000, "weather": "Partly Cloudy", "bookings": 66 },
+    { "day": 5, "occupancy": 97, "revenue": 382000, "weather": "Sunny", "bookings": 70 },
+    { "day": 6, "occupancy": 99, "revenue": 395000, "weather": "Sunny", "bookings": 72 },
+    { "day": 7, "occupancy": 96, "revenue": 378000, "weather": "Sunny", "bookings": 69 }
+  ]
+}
