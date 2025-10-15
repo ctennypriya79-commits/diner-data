@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import axios from 'axios';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, Download } from 'lucide-react';
 import { DashboardProvider, useDashboard } from '@/context/DashboardContext';
-import { MetricCard } from '@/components/MetricCard';
+import { RevenueMetrics } from '@/components/RevenueMetrics';
+import { RoomTypeProfitability } from '@/components/RoomTypeProfitability';
 import { RevenueWaterfall } from '@/components/RevenueWaterfall';
 import { RevenueForecast } from '@/components/RevenueForecast';
 import { SeasonalHeatmap } from '@/components/SeasonalHeatmap';
@@ -14,30 +13,13 @@ import { CompetitiveBenchmark } from '@/components/CompetitiveBenchmark';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 
-interface SummaryData {
-  totalRevenue: number;
-  profitMargin: number;
-  revpar: number;
-  bookingConversion: number;
-  comparison: {
-    totalRevenue: { changePercent: number };
-    profitMargin: { changePercent: number };
-    revpar: { changePercent: number };
-    bookingConversion: { changePercent: number };
-  };
-}
-
 const DashboardContent = () => {
-  const { filters, setFilters, refreshData, resetFilters, isLoading } = useDashboard();
-  const [summaryData, setSummaryData] = useState<SummaryData | null>(null);
+  const { filters, setFilters, refreshData, resetFilters, applyFilters, isLoading } = useDashboard();
   const [lastUpdated, setLastUpdated] = useState(new Date());
-  const [activeTab, setActiveTab] = useState('monthly');
 
-  useEffect(() => {
-    axios.get('/data/summary.json').then(res => {
-      setSummaryData(res.data);
-    });
-  }, [filters]);
+  const handleTabChange = (value: string) => {
+    setFilters({ ...filters, aggregation: value });
+  };
 
   const handleRefresh = async () => {
     await refreshData();
@@ -45,14 +27,13 @@ const DashboardContent = () => {
     toast.success('Data refreshed successfully');
   };
 
-  const handleApplyFilters = async () => {
-    await refreshData();
-    toast.success('Filters applied');
+  const handleApplyFilters = () => {
+    applyFilters();
+    toast.success('Filters applied successfully');
   };
 
   const handleReset = () => {
     resetFilters();
-    setActiveTab('monthly');
     toast.info('Filters reset to defaults');
   };
 
@@ -70,19 +51,6 @@ const DashboardContent = () => {
       hour12: true
     });
   };
-
-  if (!summaryData) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-        >
-          <RefreshCw className="w-8 h-8 text-primary" />
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -122,12 +90,7 @@ const DashboardContent = () => {
       {/* Main Content */}
       <main className="container mx-auto px-6 py-8">
         {/* Filters Section */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="mb-8 p-6 bg-card rounded-lg border border-border"
-        >
+        <div className="mb-8 p-6 bg-card rounded-lg border border-border animate-fade-in">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-foreground">Advanced Filters</h2>
             <div className="flex gap-2">
@@ -166,11 +129,11 @@ const DashboardContent = () => {
               </select>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Aggregation Tabs */}
         <div className="mb-6">
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <Tabs value={filters.aggregation} onValueChange={handleTabChange}>
             <TabsList>
               <TabsTrigger value="daily">Daily</TabsTrigger>
               <TabsTrigger value="weekly">Weekly</TabsTrigger>
@@ -180,52 +143,27 @@ const DashboardContent = () => {
           </Tabs>
         </div>
 
-        {/* Metrics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <MetricCard
-            title="Total Revenue"
-            value={(summaryData.totalRevenue / 100000).toFixed(2) + 'L'}
-            change={`${summaryData.comparison.totalRevenue.changePercent > 0 ? '+' : ''}${summaryData.comparison.totalRevenue.changePercent}%`}
-            changeType={summaryData.comparison.totalRevenue.changePercent >= 0 ? 'positive' : 'negative'}
-            icon="revenue"
-          />
-          <MetricCard
-            title="Profit Margin"
-            value={(summaryData.profitMargin / 100000).toFixed(2) + 'L'}
-            change={`${summaryData.comparison.profitMargin.changePercent > 0 ? '+' : ''}${summaryData.comparison.profitMargin.changePercent}%`}
-            changeType={summaryData.comparison.profitMargin.changePercent >= 0 ? 'positive' : 'negative'}
-            icon="margin"
-          />
-          <MetricCard
-            title="RevPAR"
-            value={summaryData.revpar.toLocaleString('en-IN')}
-            change={`${summaryData.comparison.revpar.changePercent > 0 ? '+' : ''}${summaryData.comparison.revpar.changePercent}%`}
-            changeType={summaryData.comparison.revpar.changePercent >= 0 ? 'positive' : 'negative'}
-            icon="revpar"
-          />
-          <MetricCard
-            title="Booking Conversion"
-            value={`${summaryData.bookingConversion}%`}
-            change={`${summaryData.comparison.bookingConversion.changePercent > 0 ? '+' : ''}${summaryData.comparison.bookingConversion.changePercent}%`}
-            changeType={summaryData.comparison.bookingConversion.changePercent >= 0 ? 'positive' : 'negative'}
-            icon="conversion"
-            currency=""
-          />
-        </div>
+        <div className="space-y-8">
+          {/* Revenue Metrics */}
+          <RevenueMetrics />
 
-        {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <RevenueWaterfall />
-          <RevenueForecast />
-        </div>
+          {/* Charts Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <RevenueForecast />
+            <RevenueWaterfall />
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <SeasonalHeatmap />
-          <ScenarioModeling />
-        </div>
+          {/* Room Type Profitability */}
+          <RoomTypeProfitability />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <BookingInsights />
+          {/* Bottom Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <SeasonalHeatmap />
+            <ScenarioModeling />
+            <BookingInsights />
+          </div>
+
+          {/* Competitive Benchmark */}
           <CompetitiveBenchmark />
         </div>
       </main>

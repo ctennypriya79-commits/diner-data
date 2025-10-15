@@ -11,7 +11,9 @@ interface DashboardContextType {
   setFilters: (filters: FilterState) => void;
   refreshData: () => void;
   resetFilters: () => void;
+  applyFilters: () => void;
   isLoading: boolean;
+  dataVersion: number;
 }
 
 const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
@@ -19,26 +21,33 @@ const DashboardContext = createContext<DashboardContextType | undefined>(undefin
 const defaultFilters: FilterState = {
   dateRange: 'last30days',
   comparisonMode: 'yoy',
-  aggregation: 'monthly'
+  aggregation: 'daily'
 };
 
 export const DashboardProvider = ({ children }: { children: ReactNode }) => {
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const [isLoading, setIsLoading] = useState(false);
+  const [dataVersion, setDataVersion] = useState(0);
 
   const refreshData = async () => {
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 800));
+    setFilters(defaultFilters);
+    setDataVersion(prev => prev + 1);
+    await new Promise(resolve => setTimeout(resolve, 500));
     setIsLoading(false);
   };
 
   const resetFilters = () => {
     setFilters(defaultFilters);
+    setDataVersion(prev => prev + 1);
+  };
+
+  const applyFilters = () => {
+    setDataVersion(prev => prev + 1);
   };
 
   return (
-    <DashboardContext.Provider value={{ filters, setFilters, refreshData, resetFilters, isLoading }}>
+    <DashboardContext.Provider value={{ filters, setFilters, refreshData, resetFilters, applyFilters, isLoading, dataVersion }}>
       {children}
     </DashboardContext.Provider>
   );

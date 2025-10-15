@@ -1,0 +1,69 @@
+{
+  "roomTypes": [
+    {
+      "id": 1,
+      "name": "Deluxe Ocean View",
+      "bookings": 210,
+      "rooms": 24,
+      "occupancy": 87.5,
+      "adr": 12500,
+      "revpar": 10937.5,
+      "revenue": 2625000,
+      "profit": 2100000,
+      "margin": 80.0
+    },
+    {
+      "id": 2,
+      "name": "Premium Suite",
+      "bookings": 111,
+      "rooms": 12,
+      "occupancy": 92.3,
+      "adr": 18500,
+      "revpar": 17075.5,
+      "revenue": 2049066,
+      "profit": 1639253,
+      "margin": 80.0
+    },
+    {
+      "id": 3,
+      "name": "Standard Room",
+      "bookings": 281,
+      "rooms": 36,
+      "occupancy": 78.2,
+      "adr": 8500,
+      "revpar": 6647,
+      "revenue": 2393292,
+      "profit": 1914634,
+      "margin": 80.0
+    },
+    {
+      "id": 4,
+      "name": "Family Villa",
+      "bookings": 68,
+      "rooms": 8,
+      "occupancy": 85.0,
+      "adr": 22000,
+      "revpar": 18700,
+      "revenue": 1496000,
+      "profit": 1196800,
+      "margin": 80.0
+    },
+    {
+      "id": 5,
+      "name": "Presidential Suite",
+      "bookings": 13,
+      "rooms": 2,
+      "occupancy": 65.0,
+      "adr": 45000,
+      "revpar": 29250,
+      "revenue": 585000,
+      "profit": 468000,
+      "margin": 80.0
+    }
+  ],
+  "summary": {
+    "totalRooms": 82,
+    "totalRevenue": 9148358,
+    "averageMargin": 80.0
+  }
+}

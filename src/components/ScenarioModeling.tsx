@@ -34,7 +34,8 @@ export const ScenarioModeling = () => {
   };
 
   const handleApply = () => {
-    setProjectedRevenue(calculatePreview());
+    const newRevenue = calculatePreview();
+    setProjectedRevenue(newRevenue);
     setIsApplied(true);
   };
 
@@ -46,7 +47,8 @@ export const ScenarioModeling = () => {
   };
 
   const previewRevenue = calculatePreview();
-  const revenueDiff = previewRevenue - (isApplied ? projectedRevenue : baseline.projectedRevenue);
+  const currentRevenue = isApplied ? projectedRevenue : baseline.projectedRevenue;
+  const revenueDiff = previewRevenue - currentRevenue;
 
   return (
     <motion.div
@@ -95,11 +97,13 @@ export const ScenarioModeling = () => {
           <div className="bg-muted rounded-lg p-4 space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Current Revenue</span>
-              <span className="font-semibold">₹{baseline.projectedRevenue.toLocaleString('en-IN')}</span>
+              <span className="font-semibold">₹{currentRevenue.toLocaleString('en-IN')}</span>
             </div>
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-sm border-t pt-2 mt-2">
               <span className="text-muted-foreground">Projected Preview</span>
-              <span className="font-bold text-primary">₹{previewRevenue.toLocaleString('en-IN')}</span>
+              <span className={`font-bold ${occupancyAdj !== 0 || adrAdj !== 0 ? 'text-primary animate-pulse' : 'text-muted-foreground'}`}>
+                ₹{previewRevenue.toLocaleString('en-IN')}
+              </span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Impact</span>

@@ -1,0 +1,26 @@
+{
+  "totalRevenue": 107100000,
+  "profitMargin": 85680000,
+  "revpar": 15420,
+  "bookingConversion": 73.5,
+  "adr": 13850,
+  "occupancy": 90.2,
+  "comparison": {
+    "totalRevenue": {
+      "previous": 95325000,
+      "changePercent": 12.4
+    },
+    "profitMargin": {
+      "previous": 79338000,
+      "changePercent": 8.0
+    },
+    "revpar": {
+      "previous": 13365,
+      "changePercent": 15.4
+    },
+    "bookingConversion": {
+      "previous": 75.1,
+      "changePercent": -2.1
+    }
+  }
+}
