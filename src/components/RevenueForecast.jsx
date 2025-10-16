@@ -5,17 +5,9 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Card } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-interface ForecastData {
-  date: string;
-  actual: number | null;
-  forecast: number;
-  upper: number;
-  lower: number;
-}
-
 export const RevenueForecast = () => {
   const [period, setPeriod] = useState('30days');
-  const [data, setData] = useState<ForecastData[]>([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get('/data/forecast.json').then(res => {

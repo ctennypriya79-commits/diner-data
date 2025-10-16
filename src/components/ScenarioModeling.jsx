@@ -5,16 +5,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 
-interface ScenarioData {
-  baseline: {
-    occupancy: number;
-    adr: number;
-    projectedRevenue: number;
-  };
-}
-
 export const ScenarioModeling = () => {
-  const [baseline, setBaseline] = useState<ScenarioData['baseline']>({ occupancy: 85.3, adr: 12850, projectedRevenue: 3570000 });
+  const [baseline, setBaseline] = useState({ occupancy: 85.3, adr: 12850, projectedRevenue: 3570000 });
   const [occupancyAdj, setOccupancyAdj] = useState(0);
   const [adrAdj, setAdrAdj] = useState(0);
   const [projectedRevenue, setProjectedRevenue] = useState(3570000);
@@ -114,7 +106,9 @@ export const ScenarioModeling = () => {
           </div>
 
           <div className="flex gap-3">
-            
+            <Button onClick={handleApply} className="flex-1">
+              Apply Scenario
+            </Button>
             <Button onClick={handleReset} variant="outline" className="flex-1">
               Reset
             </Button>

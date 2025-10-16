@@ -4,15 +4,8 @@ import axios from 'axios';
 import { Card } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, AlertCircle, CheckCircle } from 'lucide-react';
 
-interface BookingData {
-  thisWeek: { total: number; lastYear: number; change: number; revenue: number };
-  nextWeek: { total: number; lastYear: number; change: number; revenue: number };
-  nextMonth: { total: number; lastYear: number; change: number; revenue: number };
-  insights: Array<{ id: number; type: string; title: string; description: string }>;
-}
-
 export const BookingInsights = () => {
-  const [data, setData] = useState<BookingData | null>(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     axios.get('/data/booking.json').then(res => setData(res.data));

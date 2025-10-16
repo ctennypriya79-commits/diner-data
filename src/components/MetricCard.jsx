@@ -1,15 +1,6 @@
 import { motion } from 'framer-motion';
-import { TrendingUp, TrendingDown, DollarSign, Percent, BarChart3, Target } from 'lucide-react';
+import { TrendingUp, TrendingDown, DollarSign, BarChart3, Target } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-
-interface MetricCardProps {
-  title: string;
-  value: string;
-  change: string;
-  changeType: 'positive' | 'negative';
-  icon: 'revenue' | 'margin' | 'revpar' | 'conversion';
-  currency?: string;
-}
 
 const iconMap = {
   revenue: DollarSign,
@@ -18,7 +9,7 @@ const iconMap = {
   conversion: Target,
 };
 
-export const MetricCard = ({ title, value, change, changeType, icon, currency = '₹' }: MetricCardProps) => {
+export const MetricCard = ({ title, value, change, changeType, icon, currency = '₹' }) => {
   const IconComponent = iconMap[icon];
   const isPositive = changeType === 'positive';
 
