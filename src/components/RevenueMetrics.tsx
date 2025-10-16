@@ -3,9 +3,22 @@ import axios from 'axios';
 import { MetricCard } from './MetricCard';
 import { useDashboard } from '@/context/DashboardContext';
 
+interface SummaryData {
+  totalRevenue: number;
+  profitMargin: number;
+  revpar: number;
+  bookingConversion: number;
+  comparison: {
+    totalRevenue: { changePercent: number };
+    profitMargin: { changePercent: number };
+    revpar: { changePercent: number };
+    bookingConversion: { changePercent: number };
+  };
+}
+
 export const RevenueMetrics = () => {
   const { filters, dataVersion } = useDashboard();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<SummaryData | null>(null);
 
   useEffect(() => {
     fetchData();
@@ -13,7 +26,7 @@ export const RevenueMetrics = () => {
 
   const fetchData = async () => {
     try {
-      const fileMap = {
+      const fileMap: Record<string, string> = {
         daily: '/data/revenue_daily.json',
         weekly: '/data/revenue_weekly.json',
         monthly: '/data/revenue_monthly.json',
@@ -30,7 +43,7 @@ export const RevenueMetrics = () => {
 
   if (!data) return null;
 
-  const formatValue = (value) => {
+  const formatValue = (value: number) => {
     if (value >= 10000000) return `${(value / 10000000).toFixed(2)}Cr`;
     if (value >= 100000) return `${(value / 100000).toFixed(2)}L`;
     return value.toLocaleString('en-IN');

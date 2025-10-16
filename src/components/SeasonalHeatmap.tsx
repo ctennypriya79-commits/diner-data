@@ -4,6 +4,14 @@ import { Card } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sun, CloudRain, Cloud, CloudSun } from 'lucide-react';
 
+interface DayData {
+  day: number;
+  occupancy: number;
+  revenue: number;
+  weather: string;
+  bookings: number;
+}
+
 const weatherIcons = {
   Sunny: Sun,
   Rainy: CloudRain,
@@ -12,13 +20,14 @@ const weatherIcons = {
 };
 
 // Generate realistic hotel data for India with proper seasonal patterns
-const generateMonthData = (month) => {
-  const daysInMonth = {
+const generateMonthData = (month: string): DayData[] => {
+  const daysInMonth: { [key: string]: number } = {
     January: 31, February: 28, March: 31, April: 30, May: 31, June: 30,
     July: 31, August: 31, September: 30, October: 31, November: 30, December: 31
   };
   
-  const weatherPatterns = {
+  // Weather patterns for India (Tirupati region)
+  const weatherPatterns: { [key: string]: string[] } = {
     January: ['Sunny', 'Sunny', 'Partly Cloudy', 'Sunny'],
     February: ['Sunny', 'Sunny', 'Sunny', 'Partly Cloudy'],
     March: ['Sunny', 'Sunny', 'Partly Cloudy', 'Sunny'],
@@ -33,7 +42,8 @@ const generateMonthData = (month) => {
     December: ['Sunny', 'Sunny', 'Sunny', 'Partly Cloudy']
   };
   
-  const occupancyRanges = {
+  // Occupancy patterns (peak season: Oct-Mar, low season: Jun-Aug)
+  const occupancyRanges: { [key: string]: { min: number; max: number } } = {
     January: { min: 75, max: 92 },
     February: { min: 78, max: 91 },
     March: { min: 86, max: 95 },
@@ -49,7 +59,7 @@ const generateMonthData = (month) => {
   };
   
   const days = daysInMonth[month];
-  const data = [];
+  const data: DayData[] = [];
   const patterns = weatherPatterns[month];
   const occRange = occupancyRanges[month];
   
@@ -85,29 +95,32 @@ export const SeasonalHeatmap = () => {
 
   const data = generateMonthData(month);
   
+  // Calculate average occupancy
   const avgOccupancy = Math.round(data.reduce((sum, d) => sum + d.occupancy, 0) / data.length);
   
-  const getFirstDayOfMonth = (monthName) => {
+  // Get first day of month (for calendar alignment)
+  const getFirstDayOfMonth = (monthName: string) => {
     const monthIndex = months.indexOf(monthName);
     const date = new Date(2025, monthIndex, 1);
-    return date.getDay();
+    return date.getDay(); // 0 = Sunday
   };
   
   const firstDay = getFirstDayOfMonth(month);
   
+  // Create calendar grid with empty cells for alignment
   const calendarCells = [];
   for (let i = 0; i < firstDay; i++) {
     calendarCells.push(<div key={`empty-${i}`} className="aspect-square" />);
   }
   
-  const getIntensityColor = (occupancy) => {
+  const getIntensityColor = (occupancy: number) => {
     if (occupancy >= 80) return 'bg-green-600';
     if (occupancy >= 50) return 'bg-amber-500';
     return 'bg-gray-300';
   };
 
-  const WeatherIcon = ({ weather }) => {
-    const Icon = weatherIcons[weather] || Sun;
+  const WeatherIcon = ({ weather }: { weather: string }) => {
+    const Icon = weatherIcons[weather as keyof typeof weatherIcons] || Sun;
     return <Icon className="w-4 h-4 text-white" />;
   };
 
@@ -158,6 +171,7 @@ export const SeasonalHeatmap = () => {
                 <span className="text-[10px] font-bold text-white">{day.occupancy}%</span>
               </div>
               
+              {/* Tooltip on hover */}
               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-20">
                 <div className="bg-card text-foreground border border-border text-xs rounded px-3 py-2 whitespace-nowrap shadow-lg">
                   <div className="font-semibold">{month} {day.day}</div>

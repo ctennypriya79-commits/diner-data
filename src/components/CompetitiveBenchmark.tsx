@@ -1,15 +1,33 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card } from '@/components/ui/card';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+
+interface CompetitiveData {
+  metrics: Array<{
+    name: string;
+    yours: number;
+    competitor: number;
+    change: number;
+    unit: string;
+  }>;
+}
 
 export const CompetitiveBenchmark = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<CompetitiveData | null>(null);
 
   useEffect(() => {
-    axios.get('/data/competitive.json').then(res => setData(res.data.metrics));
+    axios.get('/data/competitive.json').then(res => setData(res.data));
   }, []);
+
+  if (!data) return null;
+
+  const chartData = data.metrics.map(metric => ({
+    name: metric.name.replace(' Comparison', ''),
+    'Your Property': metric.yours,
+    'Competitor Avg': metric.competitor
+  }));
 
   return (
     <motion.div
@@ -18,13 +36,10 @@ export const CompetitiveBenchmark = () => {
       transition={{ duration: 0.3, delay: 0.6 }}
     >
       <Card className="p-6">
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-foreground">Competitive Benchmark</h3>
-          <p className="text-sm text-muted-foreground">Comparison against market average</p>
-        </div>
+        <h3 className="text-lg font-semibold text-foreground mb-6">Competitive Benchmarking</h3>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data}>
+            <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis dataKey="name" tick={{ fontSize: 12 }} />
               <YAxis tick={{ fontSize: 12 }} />
@@ -36,8 +51,8 @@ export const CompetitiveBenchmark = () => {
                 }}
               />
               <Legend />
-              <Bar dataKey="yours" fill="hsl(var(--primary))" name="Your Property" />
-              <Bar dataKey="competitor" fill="hsl(var(--muted))" name="Competitor Avg" />
+              <Bar dataKey="Your Property" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="Competitor Avg" fill="hsl(var(--muted-foreground))" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

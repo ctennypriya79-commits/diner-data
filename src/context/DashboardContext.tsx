@@ -1,15 +1,31 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-const DashboardContext = createContext(undefined);
+interface FilterState {
+  dateRange: string;
+  comparisonMode: string;
+  aggregation: string;
+}
 
-const defaultFilters = {
+interface DashboardContextType {
+  filters: FilterState;
+  setFilters: (filters: FilterState) => void;
+  refreshData: () => void;
+  resetFilters: () => void;
+  applyFilters: () => void;
+  isLoading: boolean;
+  dataVersion: number;
+}
+
+const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
+
+const defaultFilters: FilterState = {
   dateRange: 'last30days',
   comparisonMode: 'yoy',
   aggregation: 'daily'
 };
 
-export const DashboardProvider = ({ children }) => {
-  const [filters, setFilters] = useState(defaultFilters);
+export const DashboardProvider = ({ children }: { children: ReactNode }) => {
+  const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const [isLoading, setIsLoading] = useState(false);
   const [dataVersion, setDataVersion] = useState(0);
 

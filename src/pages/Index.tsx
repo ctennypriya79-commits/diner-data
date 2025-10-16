@@ -17,7 +17,7 @@ const DashboardContent = () => {
   const { filters, setFilters, refreshData, resetFilters, applyFilters, isLoading } = useDashboard();
   const [lastUpdated, setLastUpdated] = useState(new Date());
 
-  const handleTabChange = (value) => {
+  const handleTabChange = (value: string) => {
     setFilters({ ...filters, aggregation: value });
   };
 
@@ -38,6 +38,7 @@ const DashboardContent = () => {
   };
 
   const handleExport = () => {
+    // Export all current dashboard data as JSON
     const exportData = {
       filters,
       timestamp: new Date().toISOString(),
@@ -56,7 +57,7 @@ const DashboardContent = () => {
     toast.success('Data exported successfully');
   };
 
-  const formatLastUpdate = (date) => {
+  const formatLastUpdate = (date: Date) => {
     return date.toLocaleString('en-IN', {
       day: '2-digit',
       month: 'short',

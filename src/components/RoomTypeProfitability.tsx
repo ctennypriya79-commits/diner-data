@@ -7,10 +7,32 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { ArrowUpDown, Download } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
+interface RoomType {
+  id: number;
+  name: string;
+  bookings: number;
+  rooms: number;
+  occupancy: number;
+  adr: number;
+  revpar: number;
+  revenue: number;
+  profit: number;
+  margin: number;
+}
+
+interface RoomProfitabilityData {
+  roomTypes: RoomType[];
+  summary: {
+    totalRooms: number;
+    totalRevenue: number;
+    averageMargin: number;
+  };
+}
+
 export const RoomTypeProfitability = () => {
-  const [data, setData] = useState(null);
-  const [sortField, setSortField] = useState('revenue');
-  const [sortDirection, setSortDirection] = useState('desc');
+  const [data, setData] = useState<RoomProfitabilityData | null>(null);
+  const [sortField, setSortField] = useState<keyof RoomType>('revenue');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
   useEffect(() => {
     fetchData();
@@ -25,7 +47,7 @@ export const RoomTypeProfitability = () => {
     }
   };
 
-  const handleSort = (field) => {
+  const handleSort = (field: keyof RoomType) => {
     if (sortField === field) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {
