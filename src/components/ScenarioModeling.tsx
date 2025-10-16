@@ -114,9 +114,7 @@ export const ScenarioModeling = () => {
           </div>
 
           <div className="flex gap-3">
-            <Button onClick={handleApply} className="flex-1 bg-primary text-primary-foreground">
-              Apply Scenario
-            </Button>
+            
             <Button onClick={handleReset} variant="outline" className="flex-1">
               Reset
             </Button>
