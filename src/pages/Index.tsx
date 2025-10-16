@@ -38,6 +38,22 @@ const DashboardContent = () => {
   };
 
   const handleExport = () => {
+    // Export all current dashboard data as JSON
+    const exportData = {
+      filters,
+      timestamp: new Date().toISOString(),
+      lastUpdated: lastUpdated.toISOString(),
+      aggregation: filters.aggregation
+    };
+    
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `dashboard_export_${new Date().getTime()}.json`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    
     toast.success('Data exported successfully');
   };
 
@@ -56,31 +72,33 @@ const DashboardContent = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Revenue Analytics</h1>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h1 className="text-xl sm:text-2xl font-bold text-foreground">Revenue Analytics</h1>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                 Last updated: {formatLastUpdate(lastUpdated)}
               </p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleRefresh}
                 disabled={isLoading}
+                className="flex-1 sm:flex-none"
               >
-                <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-                Refresh
+                <RefreshCw className={`w-4 h-4 sm:mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+                <span className="hidden sm:inline">Refresh</span>
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleExport}
+                className="flex-1 sm:flex-none"
               >
-                <Download className="w-4 h-4 mr-2" />
-                Export
+                <Download className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Export</span>
               </Button>
             </div>
           </div>
@@ -88,21 +106,30 @@ const DashboardContent = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
+      <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Filters Section */}
-        <div className="mb-8 p-6 bg-card rounded-lg border border-border animate-fade-in">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-foreground">Advanced Filters</h2>
-            <div className="flex gap-2">
-              <Button size="sm" onClick={handleApplyFilters} className="bg-primary text-primary-foreground">
+        <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-card rounded-lg border border-border animate-fade-in">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+            <h2 className="text-base sm:text-lg font-semibold text-foreground">Advanced Filters</h2>
+            <div className="flex gap-2 w-full sm:w-auto">
+              <Button 
+                size="sm" 
+                onClick={handleApplyFilters} 
+                className="bg-primary text-primary-foreground flex-1 sm:flex-none"
+              >
                 Apply Filters
               </Button>
-              <Button size="sm" variant="outline" onClick={handleReset}>
+              <Button 
+                size="sm" 
+                variant="outline" 
+                onClick={handleReset}
+                className="flex-1 sm:flex-none"
+              >
                 Reset
               </Button>
             </div>
           </div>
-          <div className="flex gap-4 items-center">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch">
             <div className="flex-1">
               <label className="text-sm font-medium mb-2 block">Date Range</label>
               <select

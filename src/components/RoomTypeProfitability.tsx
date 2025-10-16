@@ -101,26 +101,26 @@ export const RoomTypeProfitability = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.2 }}
     >
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-6">
+      <Card className="p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
           <div>
-            <h3 className="text-lg font-semibold text-foreground">Room Type Profitability Analysis</h3>
-            <p className="text-sm text-muted-foreground">Performance metrics with inline rate adjustment capabilities</p>
+            <h3 className="text-base sm:text-lg font-semibold text-foreground">Room Type Profitability Analysis</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground">Performance metrics with inline rate adjustment capabilities</p>
           </div>
-          <Button onClick={handleExport} variant="outline" size="sm">
-            <Download className="w-4 h-4 mr-2" />
-            Export
+          <Button onClick={handleExport} variant="outline" size="sm" className="w-full sm:w-auto">
+            <Download className="w-4 h-4 sm:mr-2" />
+            <span className="sm:inline">Export</span>
           </Button>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto -mx-4 sm:mx-0">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[200px]">
+                <TableHead className="w-[140px] sm:w-[200px]">
                   <button
                     onClick={() => handleSort('name')}
-                    className="flex items-center gap-2 hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
                     Room Type <ArrowUpDown className="w-3 h-3" />
                   </button>
@@ -128,7 +128,7 @@ export const RoomTypeProfitability = () => {
                 <TableHead className="text-right">
                   <button
                     onClick={() => handleSort('rooms')}
-                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
                     Rooms <ArrowUpDown className="w-3 h-3" />
                   </button>
@@ -136,23 +136,23 @@ export const RoomTypeProfitability = () => {
                 <TableHead className="text-right">
                   <button
                     onClick={() => handleSort('occupancy')}
-                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
-                    Occupancy <ArrowUpDown className="w-3 h-3" />
+                    Occ% <ArrowUpDown className="w-3 h-3" />
                   </button>
                 </TableHead>
-                <TableHead className="text-right">
+                <TableHead className="text-right hidden sm:table-cell">
                   <button
                     onClick={() => handleSort('adr')}
-                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
                     ADR <ArrowUpDown className="w-3 h-3" />
                   </button>
                 </TableHead>
-                <TableHead className="text-right">
+                <TableHead className="text-right hidden md:table-cell">
                   <button
                     onClick={() => handleSort('revpar')}
-                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
                     RevPAR <ArrowUpDown className="w-3 h-3" />
                   </button>
@@ -160,15 +160,15 @@ export const RoomTypeProfitability = () => {
                 <TableHead className="text-right">
                   <button
                     onClick={() => handleSort('revenue')}
-                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
                     Revenue <ArrowUpDown className="w-3 h-3" />
                   </button>
                 </TableHead>
-                <TableHead className="text-right">
+                <TableHead className="text-right hidden lg:table-cell">
                   <button
                     onClick={() => handleSort('profit')}
-                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
                     Profit <ArrowUpDown className="w-3 h-3" />
                   </button>
@@ -176,7 +176,7 @@ export const RoomTypeProfitability = () => {
                 <TableHead className="text-right">
                   <button
                     onClick={() => handleSort('margin')}
-                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 ml-auto hover:text-foreground transition-colors text-xs sm:text-sm"
                   >
                     Margin <ArrowUpDown className="w-3 h-3" />
                   </button>
@@ -186,33 +186,33 @@ export const RoomTypeProfitability = () => {
             <TableBody>
               {sortedRoomTypes.map((room) => (
                 <TableRow key={room.id}>
-                  <TableCell>
+                  <TableCell className="py-2 sm:py-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-warning/20 rounded flex items-center justify-center">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 bg-warning/20 rounded flex items-center justify-center flex-shrink-0">
                         <span className="text-warning text-xs">🏨</span>
                       </div>
-                      <div>
-                        <div className="font-medium">{room.name}</div>
-                        <div className="text-xs text-muted-foreground">{room.bookings} bookings</div>
+                      <div className="min-w-0">
+                        <div className="font-medium text-xs sm:text-sm truncate">{room.name}</div>
+                        <div className="text-[10px] sm:text-xs text-muted-foreground">{room.bookings} bookings</div>
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="text-right font-medium">{room.rooms}</TableCell>
-                  <TableCell className="text-right font-medium">{room.occupancy}%</TableCell>
-                  <TableCell className="text-right font-medium">₹{room.adr.toLocaleString('en-IN')}</TableCell>
-                  <TableCell className="text-right font-medium">₹{room.revpar.toLocaleString('en-IN')}</TableCell>
-                  <TableCell className="text-right font-medium">₹{room.revenue.toLocaleString('en-IN')}</TableCell>
-                  <TableCell className="text-right font-semibold text-success">₹{room.profit.toLocaleString('en-IN')}</TableCell>
-                  <TableCell className="text-right font-medium">{room.margin}%</TableCell>
+                  <TableCell className="text-right font-medium text-xs sm:text-sm">{room.rooms}</TableCell>
+                  <TableCell className="text-right font-medium text-xs sm:text-sm">{room.occupancy}%</TableCell>
+                  <TableCell className="text-right font-medium text-xs sm:text-sm hidden sm:table-cell">₹{room.adr.toLocaleString('en-IN')}</TableCell>
+                  <TableCell className="text-right font-medium text-xs sm:text-sm hidden md:table-cell">₹{room.revpar.toLocaleString('en-IN')}</TableCell>
+                  <TableCell className="text-right font-medium text-xs sm:text-sm">₹{room.revenue.toLocaleString('en-IN')}</TableCell>
+                  <TableCell className="text-right font-semibold text-success text-xs sm:text-sm hidden lg:table-cell">₹{room.profit.toLocaleString('en-IN')}</TableCell>
+                  <TableCell className="text-right font-medium text-xs sm:text-sm">{room.margin}%</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </div>
 
-        <div className="mt-4 pt-4 border-t flex items-center justify-between text-sm text-muted-foreground">
-          <span>Showing {data.roomTypes.length} room types • Total Revenue: ₹{data.summary.totalRevenue.toLocaleString('en-IN')}</span>
-          <span>Average Margin: {data.summary.averageMargin}%</span>
+        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs sm:text-sm text-muted-foreground">
+          <span className="truncate">Showing {data.roomTypes.length} room types • Total Revenue: ₹{data.summary.totalRevenue.toLocaleString('en-IN')}</span>
+          <span className="whitespace-nowrap">Average Margin: {data.summary.averageMargin}%</span>
         </div>
       </Card>
     </motion.div>

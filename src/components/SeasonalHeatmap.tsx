@@ -131,14 +131,14 @@ export const SeasonalHeatmap = () => {
       transition={{ duration: 0.3, delay: 0.3 }}
       className="w-full"
     >
-      <Card className="p-6 bg-white">
-        <div className="flex items-center justify-between mb-6">
+      <Card className="p-4 sm:p-6 bg-card">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Seasonal Demand Heatmap</h3>
-            <p className="text-sm text-gray-600">Daily occupancy and weather correlation</p>
+            <h3 className="text-base sm:text-lg font-semibold text-foreground">Seasonal Demand Heatmap</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground">Daily occupancy and weather correlation</p>
           </div>
           <Select value={month} onValueChange={setMonth}>
-            <SelectTrigger className="w-40 border-gray-300">
+            <SelectTrigger className="w-full sm:w-40 border-input">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -151,7 +151,7 @@ export const SeasonalHeatmap = () => {
         
         <div className="grid grid-cols-7 gap-1 mb-2">
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-            <div key={day} className="text-center text-xs font-medium text-gray-600 py-2">
+            <div key={day} className="text-center text-xs font-medium text-muted-foreground py-2">
               {day}
             </div>
           ))}
@@ -173,7 +173,7 @@ export const SeasonalHeatmap = () => {
               
               {/* Tooltip on hover */}
               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-20">
-                <div className="bg-gray-900 text-white text-xs rounded px-3 py-2 whitespace-nowrap shadow-lg">
+                <div className="bg-card text-foreground border border-border text-xs rounded px-3 py-2 whitespace-nowrap shadow-lg">
                   <div className="font-semibold">{month} {day.day}</div>
                   <div>Occupancy: {day.occupancy}%</div>
                   <div>Bookings: {day.bookings}</div>
@@ -184,22 +184,22 @@ export const SeasonalHeatmap = () => {
           ))}
         </div>
         
-        <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
-          <div className="flex items-center gap-4 text-xs text-gray-600">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 sm:mt-6 pt-4 border-t border-border">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-gray-300 rounded" />
-              <span>Low Demand (&lt;50%)</span>
+              <span className="whitespace-nowrap">Low (&lt;50%)</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-amber-500 rounded" />
-              <span>Medium Demand (50-80%)</span>
+              <span className="whitespace-nowrap">Medium (50-80%)</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-green-600 rounded" />
-              <span>High Demand (80%+)</span>
+              <span className="whitespace-nowrap">High (80%+)</span>
             </div>
           </div>
-          <div className="text-sm text-gray-700 font-medium">
+          <div className="text-sm text-foreground font-medium whitespace-nowrap">
             Avg Occupancy: {avgOccupancy}%
           </div>
         </div>

@@ -49,14 +49,14 @@ export const RevenueWaterfall = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.1 }}
     >
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-6">
+      <Card className="p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div>
-            <h3 className="text-lg font-semibold text-foreground">Revenue Waterfall</h3>
-            <p className="text-sm text-muted-foreground">Monthly revenue breakdown and progression</p>
+            <h3 className="text-base sm:text-lg font-semibold text-foreground">Revenue Waterfall</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground">Monthly revenue breakdown and progression</p>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+            <div className="flex items-center gap-3 flex-wrap">
               <div className="flex items-center gap-1">
                 <div className="w-3 h-3 bg-success rounded-full" />
                 <span className="text-xs text-muted-foreground">Gains</span>
@@ -66,23 +66,30 @@ export const RevenueWaterfall = () => {
                 <span className="text-xs text-muted-foreground">Losses</span>
               </div>
             </div>
-            <Button variant="outline" size="sm" onClick={handleExport}>
-              <Download className="w-4 h-4 mr-2" />
-              Export
+            <Button variant="outline" size="sm" onClick={handleExport} className="w-full sm:w-auto">
+              <Download className="w-4 h-4 sm:mr-2" />
+              <span className="sm:inline">Export</span>
             </Button>
           </div>
         </div>
-        <div className="h-80">
+        <div className="h-64 sm:h-80">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data}>
+            <BarChart data={data} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-              <YAxis tick={{ fontSize: 12 }} />
+              <XAxis 
+                dataKey="name" 
+                tick={{ fontSize: 10 }} 
+                angle={-45}
+                textAnchor="end"
+                height={80}
+              />
+              <YAxis tick={{ fontSize: 10 }} width={60} />
               <Tooltip
                 contentStyle={{
                   backgroundColor: 'hsl(var(--card))',
                   border: '1px solid hsl(var(--border))',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  fontSize: '12px'
                 }}
               />
               <Bar dataKey="value" radius={[4, 4, 0, 0]}>
