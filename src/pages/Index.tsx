@@ -2,24 +2,15 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, Download } from 'lucide-react';
 import { DashboardProvider, useDashboard } from '@/context/DashboardContext';
-import { RevenueMetrics } from '@/components/RevenueMetrics';
 import { RoomTypeProfitability } from '@/components/RoomTypeProfitability';
 import { RevenueWaterfall } from '@/components/RevenueWaterfall';
-import { RevenueForecast } from '@/components/RevenueForecast';
 import { SeasonalHeatmap } from '@/components/SeasonalHeatmap';
-import { ScenarioModeling } from '@/components/ScenarioModeling';
-import { BookingInsights } from '@/components/BookingInsights';
-import { CompetitiveBenchmark } from '@/components/CompetitiveBenchmark';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 
 const DashboardContent = () => {
   const { filters, setFilters, refreshData, resetFilters, applyFilters, isLoading } = useDashboard();
   const [lastUpdated, setLastUpdated] = useState(new Date());
 
-  const handleTabChange = (value: string) => {
-    setFilters({ ...filters, aggregation: value });
-  };
 
   const handleRefresh = async () => {
     await refreshData();
@@ -158,40 +149,16 @@ const DashboardContent = () => {
           </div>
         </div>
 
-        {/* Aggregation Tabs */}
-        <div className="mb-6">
-          <Tabs value={filters.aggregation} onValueChange={handleTabChange}>
-            <TabsList>
-              <TabsTrigger value="daily">Daily</TabsTrigger>
-              <TabsTrigger value="weekly">Weekly</TabsTrigger>
-              <TabsTrigger value="monthly">Monthly</TabsTrigger>
-              <TabsTrigger value="quarterly">Quarterly</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-
-        <div className="space-y-8">
-          {/* Revenue Metrics */}
-          <RevenueMetrics />
-
-          {/* Charts Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <RevenueForecast />
-            <RevenueWaterfall />
-          </div>
+        {/* Components - Full Width Vertical Stack */}
+        <div className="space-y-6 sm:space-y-8">
+          {/* Revenue Waterfall */}
+          <RevenueWaterfall />
 
           {/* Room Type Profitability */}
           <RoomTypeProfitability />
 
-          {/* Bottom Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <SeasonalHeatmap />
-            <ScenarioModeling />
-            <BookingInsights />
-          </div>
-
-          {/* Competitive Benchmark */}
-          <CompetitiveBenchmark />
+          {/* Seasonal Heat Map - Full Screen */}
+          <SeasonalHeatmap />
         </div>
       </main>
     </div>
