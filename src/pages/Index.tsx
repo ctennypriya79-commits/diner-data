@@ -5,6 +5,7 @@ import { DashboardProvider, useDashboard } from '@/context/DashboardContext';
 import { RoomTypeProfitability } from '@/components/RoomTypeProfitability';
 import { RevenueWaterfall } from '@/components/RevenueWaterfall';
 import { SeasonalHeatmap } from '@/components/SeasonalHeatmap';
+import { RevenueMetrics } from '@/components/RevenueMetrics';
 import { toast } from 'sonner';
 
 const DashboardContent = () => {
@@ -106,7 +107,7 @@ const DashboardContent = () => {
               <Button 
                 size="sm" 
                 onClick={handleApplyFilters} 
-                className="bg-primary text-primary-foreground flex-1 sm:flex-none"
+                className="bg-[#FDB913] hover:bg-[#FDB913]/90 text-black font-semibold flex-1 sm:flex-none"
               >
                 Apply Filters
               </Button>
@@ -120,33 +121,57 @@ const DashboardContent = () => {
               </Button>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 items-stretch">
-            <div className="flex-1">
-              <label className="text-sm font-medium mb-2 block">Date Range</label>
-              <select
-                className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground"
-                value={filters.dateRange}
-                onChange={(e) => setFilters({ ...filters, dateRange: e.target.value })}
-              >
-                <option value="last30days">Last 30 Days</option>
-                <option value="last7days">Last 7 Days</option>
-                <option value="thisMonth">This Month</option>
-                <option value="lastMonth">Last Month</option>
-              </select>
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 items-stretch">
+              <div className="flex-1">
+                <label className="text-sm font-medium mb-2 block text-foreground">Date Range</label>
+                <select
+                  className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground"
+                  value={filters.dateRange}
+                  onChange={(e) => setFilters({ ...filters, dateRange: e.target.value })}
+                >
+                  <option value="last30days">Last 30 Days</option>
+                  <option value="last7days">Last 7 Days</option>
+                  <option value="thisMonth">This Month</option>
+                  <option value="lastMonth">Last Month</option>
+                </select>
+              </div>
+              <div className="flex-1">
+                <label className="text-sm font-medium mb-2 block text-foreground">Comparison</label>
+                <select
+                  className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground"
+                  value={filters.comparisonMode}
+                  onChange={(e) => setFilters({ ...filters, comparisonMode: e.target.value })}
+                >
+                  <option value="yoy">Year over Year</option>
+                  <option value="mom">Month over Month</option>
+                  <option value="wow">Week over Week</option>
+                </select>
+              </div>
             </div>
-            <div className="flex-1">
-              <label className="text-sm font-medium mb-2 block">Comparison</label>
-              <select
-                className="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground"
-                value={filters.comparisonMode}
-                onChange={(e) => setFilters({ ...filters, comparisonMode: e.target.value })}
-              >
-                <option value="yoy">Year over Year</option>
-                <option value="mom">Month over Month</option>
-                <option value="wow">Week over Week</option>
-              </select>
+
+            {/* Aggregation Tabs */}
+            <div className="flex gap-2 sm:gap-4 border-b border-border overflow-x-auto">
+              {['daily', 'weekly', 'monthly', 'quarterly'].map((agg) => (
+                <button
+                  key={agg}
+                  onClick={() => setFilters({ ...filters, aggregation: agg })}
+                  className={`px-4 py-2 text-sm font-medium capitalize transition-colors whitespace-nowrap ${
+                    filters.aggregation === agg
+                      ? 'text-foreground border-b-2 border-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {agg}
+                </button>
+              ))}
             </div>
           </div>
+        </div>
+
+        {/* Revenue Metrics Cards */}
+        <div className="mb-6 sm:mb-8 animate-fade-in">
+          <RevenueMetrics />
         </div>
 
         {/* Components - Full Width Vertical Stack */}
