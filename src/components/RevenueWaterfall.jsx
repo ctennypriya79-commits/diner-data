@@ -6,20 +6,14 @@ import { Card } from '@/components/ui/card';
 import { Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-interface WaterfallData {
-  name: string;
-  value: number;
-  type: 'start' | 'positive' | 'negative' | 'end';
-}
-
 export const RevenueWaterfall = () => {
-  const [data, setData] = useState<WaterfallData[]>([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get('/data/waterfall.json').then(res => setData(res.data.data));
   }, []);
 
-  const getBarColor = (type: string) => {
+  const getBarColor = (type) => {
     switch (type) {
       case 'positive': return 'hsl(var(--success))';
       case 'negative': return 'hsl(var(--error))';

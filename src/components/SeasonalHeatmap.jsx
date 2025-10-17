@@ -4,14 +4,6 @@ import { Card } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sun, CloudRain, Cloud, CloudSun } from 'lucide-react';
 
-interface DayData {
-  day: number;
-  occupancy: number;
-  revenue: number;
-  weather: string;
-  bookings: number;
-}
-
 const weatherIcons = {
   Sunny: Sun,
   Rainy: CloudRain,
@@ -20,14 +12,14 @@ const weatherIcons = {
 };
 
 // Generate realistic hotel data for India with proper seasonal patterns
-const generateMonthData = (month: string): DayData[] => {
-  const daysInMonth: { [key: string]: number } = {
+const generateMonthData = (month) => {
+  const daysInMonth = {
     January: 31, February: 28, March: 31, April: 30, May: 31, June: 30,
     July: 31, August: 31, September: 30, October: 31, November: 30, December: 31
   };
   
   // Weather patterns for India (Tirupati region)
-  const weatherPatterns: { [key: string]: string[] } = {
+  const weatherPatterns = {
     January: ['Sunny', 'Sunny', 'Partly Cloudy', 'Sunny'],
     February: ['Sunny', 'Sunny', 'Sunny', 'Partly Cloudy'],
     March: ['Sunny', 'Sunny', 'Partly Cloudy', 'Sunny'],
@@ -43,7 +35,7 @@ const generateMonthData = (month: string): DayData[] => {
   };
   
   // Occupancy patterns (peak season: Oct-Mar, low season: Jun-Aug)
-  const occupancyRanges: { [key: string]: { min: number; max: number } } = {
+  const occupancyRanges = {
     January: { min: 75, max: 92 },
     February: { min: 78, max: 91 },
     March: { min: 86, max: 95 },
@@ -59,7 +51,7 @@ const generateMonthData = (month: string): DayData[] => {
   };
   
   const days = daysInMonth[month];
-  const data: DayData[] = [];
+  const data = [];
   const patterns = weatherPatterns[month];
   const occRange = occupancyRanges[month];
   
@@ -99,7 +91,7 @@ export const SeasonalHeatmap = () => {
   const avgOccupancy = Math.round(data.reduce((sum, d) => sum + d.occupancy, 0) / data.length);
   
   // Get first day of month (for calendar alignment)
-  const getFirstDayOfMonth = (monthName: string) => {
+  const getFirstDayOfMonth = (monthName) => {
     const monthIndex = months.indexOf(monthName);
     const date = new Date(2025, monthIndex, 1);
     return date.getDay(); // 0 = Sunday
@@ -113,14 +105,14 @@ export const SeasonalHeatmap = () => {
     calendarCells.push(<div key={`empty-${i}`} className="aspect-square" />);
   }
   
-  const getIntensityColor = (occupancy: number) => {
+  const getIntensityColor = (occupancy) => {
     if (occupancy >= 80) return 'bg-green-600';
     if (occupancy >= 50) return 'bg-amber-500';
     return 'bg-gray-300';
   };
 
-  const WeatherIcon = ({ weather }: { weather: string }) => {
-    const Icon = weatherIcons[weather as keyof typeof weatherIcons] || Sun;
+  const WeatherIcon = ({ weather }) => {
+    const Icon = weatherIcons[weather] || Sun;
     return <Icon className="w-5 h-5 lg:w-6 lg:h-6 text-white" />;
   };
 

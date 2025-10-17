@@ -4,18 +4,8 @@ import axios from 'axios';
 import { Card } from '@/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
-interface CompetitiveData {
-  metrics: Array<{
-    name: string;
-    yours: number;
-    competitor: number;
-    change: number;
-    unit: string;
-  }>;
-}
-
 export const CompetitiveBenchmark = () => {
-  const [data, setData] = useState<CompetitiveData | null>(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     axios.get('/data/competitive.json').then(res => setData(res.data));

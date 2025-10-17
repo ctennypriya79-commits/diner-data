@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, Download } from 'lucide-react';
-import { DashboardProvider, useDashboard } from '@/context/DashboardContext';
-import { RoomTypeProfitability } from '@/components/RoomTypeProfitability';
-import { RevenueWaterfall } from '@/components/RevenueWaterfall';
-import { SeasonalHeatmap } from '@/components/SeasonalHeatmap';
-import { RevenueMetrics } from '@/components/RevenueMetrics';
+import { DashboardProvider, useDashboard } from '@/context/DashboardContext.jsx';
+import { RoomTypeProfitability } from '@/components/RoomTypeProfitability.jsx';
+import { RevenueWaterfall } from '@/components/RevenueWaterfall.jsx';
+import { SeasonalHeatmap } from '@/components/SeasonalHeatmap.jsx';
+import { RevenueMetrics } from '@/components/RevenueMetrics.jsx';
 import { toast } from 'sonner';
 
 const DashboardContent = () => {
@@ -49,7 +49,7 @@ const DashboardContent = () => {
     toast.success('Data exported successfully');
   };
 
-  const formatLastUpdate = (date: Date) => {
+  const formatLastUpdate = (date) => {
     return date.toLocaleString('en-IN', {
       day: '2-digit',
       month: 'short',
