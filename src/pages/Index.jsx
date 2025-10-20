@@ -77,8 +77,7 @@ const DashboardContent = () => {
                 size="sm"
                 onClick={handleRefresh}
                 disabled={isLoading}
-                variant="outline"
-                className="flex-1 sm:flex-none font-medium rounded-lg border-border hover:bg-muted/50"
+                className="flex-1 sm:flex-none bg-[#F3F4F6] hover:bg-[#E5E7EB] text-gray-900 font-medium rounded-md px-4 py-2 border-0 transition-colors"
               >
                 <RefreshCw className={`w-4 h-4 sm:mr-2 ${isLoading ? 'animate-spin' : ''}`} />
                 <span className="hidden sm:inline">Refresh</span>
@@ -86,8 +85,7 @@ const DashboardContent = () => {
               <Button
                 size="sm"
                 onClick={handleExport}
-                variant="outline"
-                className="flex-1 sm:flex-none font-medium rounded-lg border-border hover:bg-muted/50"
+                className="flex-1 sm:flex-none bg-[#F3F4F6] hover:bg-[#E5E7EB] text-gray-900 font-medium rounded-md px-4 py-2 border-0 transition-colors"
               >
                 <Download className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Export</span>
@@ -107,15 +105,14 @@ const DashboardContent = () => {
               <Button 
                 size="sm" 
                 onClick={handleApplyFilters} 
-                className="bg-[#FDB913] hover:bg-[#FDB913]/90 text-black font-semibold flex-1 sm:flex-none rounded-lg px-6 shadow-sm transition-all"
+                className="bg-[#FDB913] hover:bg-[#F59E0B] text-gray-900 font-medium flex-1 sm:flex-none rounded-md px-6 py-2 border-0 transition-colors"
               >
                 Apply Filters
               </Button>
               <Button 
                 size="sm" 
                 onClick={handleReset}
-                variant="outline"
-                className="flex-1 sm:flex-none text-foreground font-medium rounded-lg px-6 border-border hover:bg-muted/50"
+                className="flex-1 sm:flex-none bg-white hover:bg-gray-50 text-gray-900 font-medium rounded-md px-6 py-2 border border-gray-300 transition-colors"
               >
                 Reset
               </Button>

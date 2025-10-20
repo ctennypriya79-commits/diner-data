@@ -84,15 +84,15 @@ export const SeasonalHeatmap = () => {
             <p className="text-xs sm:text-sm lg:text-base text-muted-foreground mt-1">Daily occupancy and weather correlation</p>
           </div>
           <Select value={month} onValueChange={setMonth}>
-            <SelectTrigger className="w-full sm:w-[180px] bg-background border border-border hover:bg-muted/50 text-sm font-normal rounded-lg px-4 transition-all">
+            <SelectTrigger className="w-full sm:w-[160px] bg-white border border-gray-300 hover:bg-gray-50 text-gray-900 text-sm font-normal rounded-md px-3 py-2 h-9 transition-colors">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-popover border border-border rounded-lg shadow-lg z-[100]">
+            <SelectContent className="bg-white border border-gray-200 rounded-md shadow-lg z-[100]">
               {months.map(m => (
                 <SelectItem 
                   key={m} 
                   value={m}
-                  className="cursor-pointer hover:bg-muted focus:bg-muted transition-colors"
+                  className="cursor-pointer hover:bg-gray-100 focus:bg-gray-100 text-gray-900 text-sm"
                 >
                   {m}
                 </SelectItem>

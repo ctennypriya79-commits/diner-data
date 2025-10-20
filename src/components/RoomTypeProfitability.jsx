@@ -85,9 +85,9 @@ export const RoomTypeProfitability = () => {
             <h3 className="text-base sm:text-lg font-semibold text-foreground">Room Type Profitability Analysis</h3>
             <p className="text-xs sm:text-sm text-muted-foreground">Performance metrics with inline rate adjustment capabilities</p>
           </div>
-          <Button onClick={handleExport} size="sm" variant="outline" className="w-full sm:w-auto font-medium rounded-lg border-border hover:bg-muted/50">
-            <Download className="w-4 h-4 sm:mr-2" />
-            <span className="sm:inline">Export</span>
+          <Button onClick={handleExport} size="sm" className="w-full sm:w-auto bg-[#F3F4F6] hover:bg-[#E5E7EB] text-gray-900 font-medium rounded-md px-4 py-2 border-0 transition-colors">
+            <Download className="w-4 h-4 mr-2" />
+            Export
           </Button>
         </div>
 

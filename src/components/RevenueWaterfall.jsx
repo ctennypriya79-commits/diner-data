@@ -50,19 +50,19 @@ export const RevenueWaterfall = () => {
             <p className="text-xs sm:text-sm text-muted-foreground">Monthly revenue breakdown and progression</p>
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-            <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+            <div className="flex items-center gap-4 flex-wrap">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-success rounded-full" />
-                <span className="text-xs sm:text-sm text-muted-foreground">Gains</span>
+                <div className="w-3 h-3 bg-[#22C55E] rounded-full" />
+                <span className="text-sm text-gray-600">Gains</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-error rounded-full" />
-                <span className="text-xs sm:text-sm text-muted-foreground">Losses</span>
+                <div className="w-3 h-3 bg-[#EF4444] rounded-full" />
+                <span className="text-sm text-gray-600">Losses</span>
               </div>
             </div>
-            <Button size="sm" onClick={handleExport} variant="outline" className="w-full sm:w-auto font-medium rounded-lg border-border hover:bg-muted/50">
-              <Download className="w-4 h-4 sm:mr-2" />
-              <span className="sm:inline">Export</span>
+            <Button size="sm" onClick={handleExport} className="w-full sm:w-auto bg-[#F3F4F6] hover:bg-[#E5E7EB] text-gray-900 font-medium rounded-md px-4 py-2 border-0 transition-colors">
+              <Download className="w-4 h-4 mr-2" />
+              Export
             </Button>
           </div>
         </div>
