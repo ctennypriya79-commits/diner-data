@@ -52,15 +52,15 @@ export const RevenueWaterfall = () => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
             <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-success rounded-full shadow-sm ring-2 ring-success/20" />
-                <span className="text-xs sm:text-sm text-foreground font-medium">Gains</span>
+                <div className="w-3 h-3 bg-success rounded-full" />
+                <span className="text-xs sm:text-sm text-muted-foreground">Gains</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-error rounded-full shadow-sm ring-2 ring-error/20" />
-                <span className="text-xs sm:text-sm text-foreground font-medium">Losses</span>
+                <div className="w-3 h-3 bg-error rounded-full" />
+                <span className="text-xs sm:text-sm text-muted-foreground">Losses</span>
               </div>
             </div>
-            <Button size="sm" onClick={handleExport} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-md transition-all">
+            <Button size="sm" onClick={handleExport} variant="outline" className="w-full sm:w-auto font-medium rounded-lg border-border hover:bg-muted/50">
               <Download className="w-4 h-4 sm:mr-2" />
               <span className="sm:inline">Export</span>
             </Button>

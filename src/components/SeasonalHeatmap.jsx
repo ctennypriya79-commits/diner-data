@@ -61,14 +61,14 @@ export const SeasonalHeatmap = () => {
   }
   
   const getIntensityColor = (occupancy) => {
-    if (occupancy >= 80) return 'bg-success/90 hover:bg-success';
-    if (occupancy >= 50) return 'bg-warning/90 hover:bg-warning';
-    return 'bg-muted/70 hover:bg-muted';
+    if (occupancy >= 80) return 'bg-[#22C55E] hover:bg-[#16A34A]';
+    if (occupancy >= 50) return 'bg-[#F59E0B] hover:bg-[#D97706]';
+    return 'bg-[#E5E7EB] hover:bg-[#D1D5DB]';
   };
 
   const WeatherIcon = ({ weather }) => {
     const Icon = weatherIcons[weather] || Sun;
-    return <Icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />;
+    return <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={2.5} />;
   };
 
   return (
@@ -84,15 +84,15 @@ export const SeasonalHeatmap = () => {
             <p className="text-xs sm:text-sm lg:text-base text-muted-foreground mt-1">Daily occupancy and weather correlation</p>
           </div>
           <Select value={month} onValueChange={setMonth}>
-            <SelectTrigger className="w-full sm:w-48 bg-card border-2 border-border hover:border-primary/50 text-sm sm:text-base font-medium shadow-sm transition-all focus:ring-2 focus:ring-primary/20">
+            <SelectTrigger className="w-full sm:w-[180px] bg-background border border-border hover:bg-muted/50 text-sm font-normal rounded-lg px-4 transition-all">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-popover border-2 border-border shadow-xl z-[100]">
+            <SelectContent className="bg-popover border border-border rounded-lg shadow-lg z-[100]">
               {months.map(m => (
                 <SelectItem 
                   key={m} 
                   value={m}
-                  className="cursor-pointer hover:bg-primary/10 focus:bg-primary/10 transition-colors"
+                  className="cursor-pointer hover:bg-muted focus:bg-muted transition-colors"
                 >
                   {m}
                 </SelectItem>
@@ -116,15 +116,15 @@ export const SeasonalHeatmap = () => {
           {data.map((day) => (
             <motion.div
               key={day.day}
-              whileHover={{ scale: 1.05, zIndex: 10 }}
-              className={`${getIntensityColor(day.occupancy)} rounded-lg p-2 sm:p-3 lg:p-4 cursor-pointer transition-all shadow-lg hover:shadow-2xl relative group min-h-[70px] sm:min-h-[90px] lg:min-h-[110px] border-2 border-transparent hover:border-primary/30`}
+              whileHover={{ scale: 1.02 }}
+              className={`${getIntensityColor(day.occupancy)} rounded-xl p-3 sm:p-4 cursor-pointer transition-all shadow-sm relative group min-h-[90px] sm:min-h-[110px] lg:min-h-[120px]`}
             >
-              <div className="flex flex-col items-center justify-center h-full space-y-1 sm:space-y-2">
-                <span className="text-sm sm:text-base lg:text-lg font-bold text-white drop-shadow-md">{day.day}</span>
+              <div className="flex flex-col items-center justify-center h-full space-y-2">
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-white">{day.day}</span>
                 <div className="my-1">
                   <WeatherIcon weather={day.weather} />
                 </div>
-                <span className="text-xs sm:text-sm lg:text-base font-bold text-white drop-shadow-md">{day.occupancy}%</span>
+                <span className="text-sm sm:text-base font-bold text-white">{day.occupancy}%</span>
               </div>
               
               {/* Enhanced Tooltip on hover */}
@@ -144,22 +144,22 @@ export const SeasonalHeatmap = () => {
         </div>
         
         {/* Legend and Stats */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-4 sm:pt-6 border-t-2 border-border">
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm lg:text-base text-muted-foreground">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-6 border-t border-border">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 lg:w-5 lg:h-5 bg-muted rounded" />
-              <span className="whitespace-nowrap font-medium">Low (&lt;50%)</span>
+              <div className="w-4 h-4 bg-[#E5E7EB] rounded" />
+              <span>Low (&lt;50%)</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 lg:w-5 lg:h-5 bg-warning rounded" />
-              <span className="whitespace-nowrap font-medium">Medium (50-80%)</span>
+              <div className="w-4 h-4 bg-[#F59E0B] rounded" />
+              <span>Medium (50-80%)</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 lg:w-5 lg:h-5 bg-success rounded" />
-              <span className="whitespace-nowrap font-medium">High (80%+)</span>
+              <div className="w-4 h-4 bg-[#22C55E] rounded" />
+              <span>High (80%+)</span>
             </div>
           </div>
-          <div className="text-base sm:text-lg lg:text-xl text-foreground font-bold bg-primary/10 px-3 sm:px-4 py-2 rounded-lg">
+          <div className="text-base sm:text-lg font-bold text-foreground">
             Average Occupancy: {avgOccupancy}%
           </div>
         </div>

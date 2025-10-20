@@ -77,7 +77,8 @@ const DashboardContent = () => {
                 size="sm"
                 onClick={handleRefresh}
                 disabled={isLoading}
-                className="flex-1 sm:flex-none bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold shadow-md transition-all"
+                variant="outline"
+                className="flex-1 sm:flex-none font-medium rounded-lg border-border hover:bg-muted/50"
               >
                 <RefreshCw className={`w-4 h-4 sm:mr-2 ${isLoading ? 'animate-spin' : ''}`} />
                 <span className="hidden sm:inline">Refresh</span>
@@ -85,7 +86,8 @@ const DashboardContent = () => {
               <Button
                 size="sm"
                 onClick={handleExport}
-                className="flex-1 sm:flex-none bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-md transition-all"
+                variant="outline"
+                className="flex-1 sm:flex-none font-medium rounded-lg border-border hover:bg-muted/50"
               >
                 <Download className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Export</span>
@@ -105,14 +107,15 @@ const DashboardContent = () => {
               <Button 
                 size="sm" 
                 onClick={handleApplyFilters} 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold flex-1 sm:flex-none shadow-md transition-all"
+                className="bg-[#FDB913] hover:bg-[#FDB913]/90 text-black font-semibold flex-1 sm:flex-none rounded-lg px-6 shadow-sm transition-all"
               >
                 Apply Filters
               </Button>
               <Button 
                 size="sm" 
                 onClick={handleReset}
-                className="flex-1 sm:flex-none bg-muted hover:bg-muted/80 text-foreground font-semibold shadow-sm transition-all border border-border"
+                variant="outline"
+                className="flex-1 sm:flex-none text-foreground font-medium rounded-lg px-6 border-border hover:bg-muted/50"
               >
                 Reset
               </Button>
