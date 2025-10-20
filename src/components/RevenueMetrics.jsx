@@ -50,35 +50,40 @@ export const RevenueMetrics = () => {
     return value.toLocaleString('en-IN');
   };
 
+  // Extract change percentages from comparison object
+  const revenueChange = data.comparison?.totalRevenue?.changePercent || 0;
+  const marginChange = data.comparison?.profitMargin?.changePercent || 0;
+  const revparChange = data.comparison?.revpar?.changePercent || 0;
+  const conversionChange = data.comparison?.bookingConversion?.changePercent || 0;
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       <MetricCard
         title="Total Revenue"
         value={formatValue(data.totalRevenue)}
-        change={`${data.revenueChange > 0 ? '+' : ''}${data.revenueChange}%`}
-        changeType={data.revenueChange >= 0 ? 'positive' : 'negative'}
+        change={`${revenueChange > 0 ? '+' : ''}${revenueChange.toFixed(1)}%`}
+        changeType={revenueChange >= 0 ? 'positive' : 'negative'}
         icon="revenue"
       />
       <MetricCard
         title="Profit Margin"
-        value={`${data.profitMargin}`}
-        change={`${data.marginChange > 0 ? '+' : ''}${data.marginChange}%`}
-        changeType={data.marginChange >= 0 ? 'positive' : 'negative'}
+        value={formatValue(data.profitMargin)}
+        change={`${marginChange > 0 ? '+' : ''}${marginChange.toFixed(1)}%`}
+        changeType={marginChange >= 0 ? 'positive' : 'negative'}
         icon="margin"
-        currency=""
       />
       <MetricCard
         title="RevPAR"
         value={formatValue(data.revpar)}
-        change={`${data.revparChange > 0 ? '+' : ''}${data.revparChange}%`}
-        changeType={data.revparChange >= 0 ? 'positive' : 'negative'}
+        change={`${revparChange > 0 ? '+' : ''}${revparChange.toFixed(1)}%`}
+        changeType={revparChange >= 0 ? 'positive' : 'negative'}
         icon="revpar"
       />
       <MetricCard
         title="Booking Conversion"
         value={`${data.bookingConversion}%`}
-        change={`${data.conversionChange > 0 ? '+' : ''}${data.conversionChange}%`}
-        changeType={data.conversionChange >= 0 ? 'positive' : 'negative'}
+        change={`${conversionChange > 0 ? '+' : ''}${conversionChange.toFixed(1)}%`}
+        changeType={conversionChange >= 0 ? 'positive' : 'negative'}
         icon="conversion"
         currency=""
       />
