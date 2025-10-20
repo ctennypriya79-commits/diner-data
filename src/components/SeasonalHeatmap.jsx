@@ -61,9 +61,9 @@ export const SeasonalHeatmap = () => {
   }
   
   const getIntensityColor = (occupancy) => {
-    if (occupancy >= 80) return 'bg-success';
-    if (occupancy >= 50) return 'bg-warning';
-    return 'bg-muted';
+    if (occupancy >= 80) return 'bg-success/90 hover:bg-success';
+    if (occupancy >= 50) return 'bg-warning/90 hover:bg-warning';
+    return 'bg-muted/70 hover:bg-muted';
   };
 
   const WeatherIcon = ({ weather }) => {
@@ -84,12 +84,18 @@ export const SeasonalHeatmap = () => {
             <p className="text-xs sm:text-sm lg:text-base text-muted-foreground mt-1">Daily occupancy and weather correlation</p>
           </div>
           <Select value={month} onValueChange={setMonth}>
-            <SelectTrigger className="w-full sm:w-48 border-input text-sm sm:text-base">
+            <SelectTrigger className="w-full sm:w-48 bg-card border-2 border-border hover:border-primary/50 text-sm sm:text-base font-medium shadow-sm transition-all focus:ring-2 focus:ring-primary/20">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-popover border-border z-50">
+            <SelectContent className="bg-popover border-2 border-border shadow-xl z-[100]">
               {months.map(m => (
-                <SelectItem key={m} value={m}>{m}</SelectItem>
+                <SelectItem 
+                  key={m} 
+                  value={m}
+                  className="cursor-pointer hover:bg-primary/10 focus:bg-primary/10 transition-colors"
+                >
+                  {m}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -111,12 +117,14 @@ export const SeasonalHeatmap = () => {
             <motion.div
               key={day.day}
               whileHover={{ scale: 1.05, zIndex: 10 }}
-              className={`${getIntensityColor(day.occupancy)} rounded-md sm:rounded-lg p-2 sm:p-3 lg:p-4 cursor-pointer transition-all shadow-md hover:shadow-xl relative group min-h-[60px] sm:min-h-[80px] lg:min-h-[100px]`}
+              className={`${getIntensityColor(day.occupancy)} rounded-lg p-2 sm:p-3 lg:p-4 cursor-pointer transition-all shadow-lg hover:shadow-2xl relative group min-h-[70px] sm:min-h-[90px] lg:min-h-[110px] border-2 border-transparent hover:border-primary/30`}
             >
-              <div className="flex flex-col items-center justify-center h-full space-y-0.5 sm:space-y-1 lg:space-y-2">
-                <span className="text-sm sm:text-base lg:text-lg font-bold text-white">{day.day}</span>
-                <WeatherIcon weather={day.weather} />
-                <span className="text-xs sm:text-sm lg:text-base font-bold text-white">{day.occupancy}%</span>
+              <div className="flex flex-col items-center justify-center h-full space-y-1 sm:space-y-2">
+                <span className="text-sm sm:text-base lg:text-lg font-bold text-white drop-shadow-md">{day.day}</span>
+                <div className="my-1">
+                  <WeatherIcon weather={day.weather} />
+                </div>
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-white drop-shadow-md">{day.occupancy}%</span>
               </div>
               
               {/* Enhanced Tooltip on hover */}

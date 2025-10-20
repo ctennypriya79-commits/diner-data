@@ -50,17 +50,17 @@ export const RevenueWaterfall = () => {
             <p className="text-xs sm:text-sm text-muted-foreground">Monthly revenue breakdown and progression</p>
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-            <div className="flex items-center gap-3 flex-wrap">
-              <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-success rounded-full" />
-                <span className="text-xs text-muted-foreground">Gains</span>
+            <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-success rounded-full shadow-sm ring-2 ring-success/20" />
+                <span className="text-xs sm:text-sm text-foreground font-medium">Gains</span>
               </div>
-              <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-error rounded-full" />
-                <span className="text-xs text-muted-foreground">Losses</span>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-error rounded-full shadow-sm ring-2 ring-error/20" />
+                <span className="text-xs sm:text-sm text-foreground font-medium">Losses</span>
               </div>
             </div>
-            <Button variant="outline" size="sm" onClick={handleExport} className="w-full sm:w-auto">
+            <Button size="sm" onClick={handleExport} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-md transition-all">
               <Download className="w-4 h-4 sm:mr-2" />
               <span className="sm:inline">Export</span>
             </Button>

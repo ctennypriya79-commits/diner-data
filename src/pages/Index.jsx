@@ -74,20 +74,18 @@ const DashboardContent = () => {
             </div>
             <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
               <Button
-                variant="outline"
                 size="sm"
                 onClick={handleRefresh}
                 disabled={isLoading}
-                className="flex-1 sm:flex-none"
+                className="flex-1 sm:flex-none bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold shadow-md transition-all"
               >
                 <RefreshCw className={`w-4 h-4 sm:mr-2 ${isLoading ? 'animate-spin' : ''}`} />
                 <span className="hidden sm:inline">Refresh</span>
               </Button>
               <Button
-                variant="outline"
                 size="sm"
                 onClick={handleExport}
-                className="flex-1 sm:flex-none"
+                className="flex-1 sm:flex-none bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-md transition-all"
               >
                 <Download className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Export</span>
@@ -107,15 +105,14 @@ const DashboardContent = () => {
               <Button 
                 size="sm" 
                 onClick={handleApplyFilters} 
-                className="bg-[#FDB913] hover:bg-[#FDB913]/90 text-black font-semibold flex-1 sm:flex-none"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold flex-1 sm:flex-none shadow-md transition-all"
               >
                 Apply Filters
               </Button>
               <Button 
                 size="sm" 
-                variant="outline" 
                 onClick={handleReset}
-                className="flex-1 sm:flex-none"
+                className="flex-1 sm:flex-none bg-muted hover:bg-muted/80 text-foreground font-semibold shadow-sm transition-all border border-border"
               >
                 Reset
               </Button>
